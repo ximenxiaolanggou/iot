@@ -84,3 +84,127 @@ int main () {
 ## struct、union、enum、void
 
 ## sizeof、typedef、register
+
+# goto
+
+```c
+#include<stdio.h>
+
+int main() {
+	printf("1111111111\n");
+	goto NEXT;
+	printf("2222222222\n");
+	printf("3333333333\n");
+	printf("4444444444\n");
+NEXT:
+	printf("5555555555\n");
+	printf("6666666666\n");
+
+}
+```
+
+# 字符数组
+
+```c
+#include<stdio.h>
+
+int main() {
+
+	char arr[] = {'h','e','l','l','o','\0'};
+
+	char arr2[] = "hello";
+
+	char arr3[3][10] = {"hehe", "hahha","heihei"};
+
+	printf("%s\n", arr);
+	printf("%s\n", arr2);	
+}
+```
+
+# 获取键盘字符串
+
+```c
+#include<stdio.h>
+
+int main() {
+
+	char buf[5] = "";
+
+	//scanf("%s", &buf); // 输入内容不能存在空格
+
+	//gets(buf); // 当输入内容超过buf缓冲区大小会造成其他内存数据污染
+	
+	fgets(buf, sizeof(buf), stdin);
+
+	printf("%s\n",buf);
+}
+```
+
+# Demon 
+
+asdasdasdasdasdasdadsfa -> abcdefj...
+
+```c
+#include<stdio.h>
+
+int main() {
+	
+	char arr[11] = "";
+
+	int i;
+	int j;
+	char temp;
+
+	fgets(arr, sizeof(arr), stdin);
+
+	printf("%s\n", arr);
+	for(i = 0 ; i < 9 ; i++) {
+		for(j = (1 + i) ; j < 10 ; j++) {
+			if(arr[i] > arr[j]) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+				printf("%s\n", arr);
+			}
+
+		}
+
+	}
+	
+	printf("end\n");
+	printf("%s\n", arr);
+
+	return 0;
+
+}
+```
+
+# extern 外部文件引入
+
+## main.c
+
+```c
+#include<stdio.h>
+
+extern int data;
+void print(void) {
+
+	printf("%d\n",data);
+}
+```
+
+## fun.c
+
+```c
+#include<stdio.h>
+
+extern void print(void);
+extern int data;
+int main(){
+
+	print();
+}
+
+int data = 100;
+```
+
