@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\HARDWARE\demo_01_led;..\HARDWARE\demo_02_gpio_key;..\HARDWARE\demo_04_exti;..\HARDWARE\demo_03_usart;..\HARDWARE\demo_05_iwdg;..\HARDWARE\demo_07_timer;..\HARDWARE\demo_08_pwm;..\HARDWARE\demo_09_in_acquire</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\HARDWARE\demo_01_led;..\HARDWARE\demo_02_gpio_key;..\HARDWARE\demo_04_exti;..\HARDWARE\demo_03_usart;..\HARDWARE\demo_05_iwdg;..\HARDWARE\demo_07_timer;..\HARDWARE\demo_08_pwm;..\HARDWARE\demo_09_in_acquire;..\HARDWARE\demo_10_lcd;..\SYSTEM\usart;..\HARDWARE\demo_11_rtc;..\HARDWARE\demo_12_wkup;..\HARDWARE\demo_13_adc;..\HARDWARE\demo_14_tseneor;..\HARDWARE\demo_15_dac</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -544,6 +544,11 @@
               <FileType>1</FileType>
               <FilePath>..\SYSTEM\sys\sys.c</FilePath>
             </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -558,11 +563,6 @@
               <FileName>key.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\demo_02_gpio_key\key.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\demo_03_usart\usart.c</FilePath>
             </File>
             <File>
               <FileName>exti.c</FileName>
@@ -588,6 +588,41 @@
               <FileName>inacquire.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\demo_09_in_acquire\inacquire.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_10_lcd\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>my_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_03_usart\my_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_11_rtc\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>wkup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_12_wkup\wkup.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_13_adc\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tsensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_14_tseneor\tsensor.c</FilePath>
+            </File>
+            <File>
+              <FileName>dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\demo_15_dac\dac.c</FilePath>
             </File>
           </Files>
         </Group>
