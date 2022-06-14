@@ -1,0 +1,58 @@
+C51 COMPILER V9.54   MATRIX                                                                06/11/2022 19:38:38 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MATRIX
+OBJECT MODULE PLACED IN .\Objects\MATRIX.obj
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE MATRIX\MATRIX.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\LCD;.\MATRIX;.\DELA
+                    -Y;.\USART;.\DS1302;.\I2C;.\AT24C02;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\MATRIX.lst) TABS(3) OBJECT(.
+                    -\Objects\MATRIX.obj)
+
+line level    source
+
+   1          #include "MATRIX.h"
+   2          #include "delay.h"
+   3          #include <REGX52.H>
+   4          unsigned char getPressKey()
+   5          {
+   6   1         unsigned int num;
+   7   1         P1 = 0xff;
+   8   1         P1_3 = 0;
+   9   1         if(P1_7 == 0) { delay(20); while(P1_7 == 0); delay(20); num = 1;}
+  10   1         if(P1_6 == 0) { delay(20); while(P1_6 == 0); delay(20); num = 5;}
+  11   1         if(P1_5 == 0) { delay(20); while(P1_5 == 0); delay(20); num = 9;}
+  12   1         if(P1_4 == 0) { delay(20); while(P1_4 == 0); delay(20); num = 13;}
+  13   1         
+  14   1         P1_2 = 0;
+  15   1         if(P1_7 == 0) { delay(20); while(P1_7 == 0); delay(20); num = 2;}
+  16   1         if(P1_6 == 0) { delay(20); while(P1_6 == 0); delay(20); num = 6;}
+  17   1         if(P1_5 == 0) { delay(20); while(P1_5 == 0); delay(20); num = 10;}
+  18   1         if(P1_4 == 0) { delay(20); while(P1_4 == 0); delay(20); num = 14;}
+  19   1         
+  20   1         P1_1 = 0;
+  21   1         if(P1_7 == 0) { delay(20); while(P1_7 == 0); delay(20); num = 3;}
+  22   1         if(P1_6 == 0) { delay(20); while(P1_6 == 0); delay(20); num = 7;}
+  23   1         if(P1_5 == 0) { delay(20); while(P1_5 == 0); delay(20); num = 11;}
+  24   1         if(P1_4 == 0) { delay(20); while(P1_4 == 0); delay(20); num = 15;}
+  25   1         
+  26   1         P1_0 = 0;
+  27   1         if(P1_7 == 0) { delay(20); while(P1_7 == 0); delay(20); num = 4;}
+  28   1         if(P1_6 == 0) { delay(20); while(P1_6 == 0); delay(20); num = 8;}
+  29   1         if(P1_5 == 0) { delay(20); while(P1_5 == 0); delay(20); num = 12;}
+  30   1         if(P1_4 == 0) { delay(20); while(P1_4 == 0); delay(20); num = 16;}
+  31   1         
+  32   1         return num;
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    366    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

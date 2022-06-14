@@ -1,0 +1,1 @@
+"uart\uart.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DELAY) DEBUG OBJECTEXTEND PRINT(.\Listings\uart.lst) TABS (3) OBJECT(.\Objects\uart.obj)

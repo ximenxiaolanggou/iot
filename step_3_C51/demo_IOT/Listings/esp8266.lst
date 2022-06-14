@@ -1,0 +1,43 @@
+C51 COMPILER V9.54   ESP8266                                                               06/14/2022 22:56:09 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ESP8266
+OBJECT MODULE PLACED IN .\Objects\esp8266.obj
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE esp8266\esp8266.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\
+                    -DELAY) DEBUG OBJECTEXTEND PRINT(.\Listings\esp8266.lst) TABS(3) OBJECT(.\Objects\esp8266.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "esp8266.h"
+   3          #include "uart.h"
+   4          #include "delay.h"
+   5          
+   6          
+   7          char AT_CIPMUX[] = "AT+CIPMUX=1\r\n";
+   8          char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
+   9          char AT_CIPSTART[] = "AT+CIPSTART=2,\"TCP\",\"192.168.28.154\",11111\r\n";
+  10          
+  11          // ≥ı ºªØ
+  12          void Esp8266_Init(void)
+  13          {
+  14   1         USART_SendString(AT_CIPMUX);
+  15   1         //delay(2000);
+  16   1         //USART_SendString(AT_CWJAP);
+  17   1         delay(2000);
+  18   1         USART_SendString(AT_CIPSTART);
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     23    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     99    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

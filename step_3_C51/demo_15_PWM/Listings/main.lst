@@ -1,0 +1,50 @@
+C51 COMPILER V9.54   MAIN                                                                  06/12/2022 15:28:33 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\LCD;.\MATRIX;.\DELAY;.\USART
+                    -;.\DS1302;.\I2C;.\AT24C02;.\TIMER0) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Timer0.h"
+   3          #include "DELAY.h"
+   4          
+   5          
+   6          unsigned char LevelNum[] = {0,25,50,100};
+   7          unsigned count = 0;
+   8          int main()
+   9          {
+  10   1         
+  11   1            Timer0_Init();
+  12   1            P2_1 = 0;
+  13   1            while(1)
+  14   1            {
+  15   2               if(P3_1 == 0)
+  16   2               {
+  17   3                  delay(20);
+  18   3                  while(P3_1 == 0);
+  19   3                  delay(20);
+  20   3                  count++;
+  21   3                  SetCompareNum(LevelNum[count % 4]);
+  22   3                  
+  23   3               }
+  24   2            }
+  25   1      
+  26   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,126 @@
+C51 COMPILER V9.54   ONEWIRE                                                               06/11/2022 20:38:55 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ONEWIRE
+OBJECT MODULE PLACED IN .\Objects\OneWire.obj
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE OneWire\OneWire.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\LCD;.\MATRIX;.\DE
+                    -LAY;.\USART;.\DS1302;.\I2C;.\AT24C02;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\OneWire.lst) TABS(3) OBJEC
+                    -T(.\Objects\OneWire.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "OneWire.H"
+   3          
+   4          sbit OneWire_DQ = P3^7;
+   5          
+   6          
+   7          // 初始化
+   8          unsigned char OneWire_Init(void)
+   9          {
+  10   1         unsigned char i;
+  11   1         unsigned char AckBit;
+  12   1      
+  13   1         // 拉低总线
+  14   1         OneWire_DQ = 1;
+  15   1         OneWire_DQ = 0; 
+  16   1         
+  17   1         
+  18   1         i = 247;while (--i); // 延迟 500us
+  19   1         
+  20   1         // 释放总线
+  21   1         OneWire_DQ = 1;
+  22   1         
+  23   1         i = 32;while (--i); // 延迟70us
+  24   1         AckBit = OneWire_DQ;
+  25   1         
+  26   1         i = 85;while (--i); // 延迟170us
+  27   1         return AckBit;
+  28   1      }
+  29          
+  30          // 发送一位
+  31          void OneWire_SendBit(unsigned char Bit)
+  32          {
+  33   1         unsigned char i;
+  34   1         
+  35   1         // 1.主机将总线拉低60~120us,然后释放总线，表示发送0
+  36   1         if(Bit == 0)
+  37   1         {
+  38   2            OneWire_DQ = 0;
+  39   2            i = 60;
+  40   2            while (--i);
+  41   2            OneWire_DQ = 1;
+  42   2         }else{
+  43   2            // 2.主机将总线拉低1~15us,  然后释放总线，表示发送1
+  44   2            OneWire_DQ = 0;
+  45   2            i = 4;
+  46   2            while (--i);
+  47   2            OneWire_DQ = 1;
+  48   2            i = 24;
+  49   2            while (--i);      //延时50us 
+  50   2         }  
+  51   1      }
+  52          
+  53          
+C51 COMPILER V9.54   ONEWIRE                                                               06/11/2022 20:38:55 PAGE 2   
+
+  54          /*
+  55             接收一位：
+  56                主机将总线拉低1~15us，然后释放总线，并在拉低后15us内读取总线电平（尽量贴�
+             -��15us的末尾），
+  57                读取为低电平则为接收0，读取为高电平则为接收1 ，整个时间片应大于60us
+  58          
+  59             */
+  60          unsigned char OneWire_ReceiveBit(void)
+  61          {
+  62   1         unsigned char Data;
+  63   1         unsigned char i;
+  64   1         
+  65   1         OneWire_DQ = 0;
+  66   1         
+  67   1         i = 2;while (--i);      //延时5us
+  68   1         OneWire_DQ = 1;
+  69   1         
+  70   1         i = 2;while (--i);      //延时5us
+  71   1         Data = OneWire_DQ;
+  72   1         
+  73   1         i = 24;while (--i);      //延时50us
+  74   1         
+  75   1         return Data;
+  76   1      }
+  77          
+  78          // 发送一字节
+  79          void OneWire_SendByte(unsigned char Byte)
+  80          {
+  81   1         unsigned char i;
+  82   1         for(i = 0 ; i < 8 ; i++)
+  83   1         {
+  84   2            OneWire_SendBit((0x01 << i) & Byte);
+  85   2         }
+  86   1      }
+  87          
+  88          // 接收一字节
+  89          unsigned char OneWire_ReceiveByte()
+  90          {
+  91   1         unsigned char Data = 0x00,i;
+  92   1         for(i = 0 ; i < 8 ; i++)
+  93   1         {
+  94   2            if(OneWire_ReceiveBit()) Data |= (0x01 << i);
+  95   2         }
+  96   1         return Data;
+  97   1      }
+  98          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    129    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

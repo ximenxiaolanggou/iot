@@ -1,0 +1,219 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/14/2022  22:59:38  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5_51\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\uart.obj, .\Objects\esp8266.obj, .\Objects\DELAY.obj TO .\O
+>> bjects\project PRINT (.\Listings\project.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\uart.obj (UART)
+  .\Objects\esp8266.obj (ESP8266)
+  .\Objects\DELAY.obj (DELAY)
+  C:\KEIL_V5_51\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5_51\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5_51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\project (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0063H     UNIT         ?DT?ESP8266
+            IDATA   006BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     006CH     UNIT         ?C_INITSEG
+            CODE    08F8H     0023H     UNIT         ?PR?USART?MAIN
+            CODE    091BH     001BH     UNIT         ?PR?UART_INIT?UART
+            CODE    0936H     0019H     UNIT         ?C?LIB_CODE
+            CODE    094FH     0017H     UNIT         ?PR?ESP8266_INIT?ESP8266
+            CODE    0966H     0013H     UNIT         ?PR?_USART_SENDSTRING?UART
+            CODE    0979H     000FH     UNIT         ?PR?_DELAY?DELAY
+            CODE    0988H     0008H     UNIT         ?PR?MAIN?MAIN
+            CODE    0990H     0008H     UNIT         ?PR?_USART_SENDBYTE?UART
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\project (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/14/2022  22:59:38  PAGE 2
+
+
+  +--> ?PR?UART_INIT?UART
+  +--> ?PR?ESP8266_INIT?ESP8266
+
+?PR?ESP8266_INIT?ESP8266
+  +--> ?PR?_USART_SENDSTRING?UART
+  +--> ?PR?_DELAY?DELAY
+
+?PR?_USART_SENDSTRING?UART
+  +--> ?PR?_USART_SENDBYTE?UART
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00A0H.3       PUBLIC        P2_3
+  B:0098H.0       PUBLIC        RI
+  C:0988H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  C:08F8H         PUBLIC        usart
+  -------         PROC          MAIN
+  C:0988H         LINE#         5
+  C:0988H         LINE#         6
+  C:0988H         LINE#         8
+  C:098BH         LINE#         9
+  C:098EH         LINE#         10
+  C:098EH         LINE#         11
+  C:098EH         LINE#         13
+  -------         ENDPROC       MAIN
+  -------         PROC          USART
+  C:08F8H         LINE#         17
+  C:08FCH         LINE#         19
+  C:08FFH         LINE#         20
+  C:08FFH         LINE#         21
+  C:0906H         LINE#         22
+  C:090DH         LINE#         23
+  C:0914H         LINE#         27
+  C:0916H         LINE#         28
+  C:0916H         LINE#         29
+  -------         ENDPROC       USART
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  C:0990H         PUBLIC        _USART_SendByte
+  C:091BH         PUBLIC        Uart_Init
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  B:00B8H.4       PUBLIC        PS
+  D:0099H         PUBLIC        SBUF
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/14/2022  22:59:38  PAGE 3
+
+
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  C:0966H         PUBLIC        _USART_SendString
+  -------         PROC          UART_INIT
+  C:091BH         LINE#         7
+  C:091BH         LINE#         8
+  C:091BH         LINE#         9
+  C:091EH         LINE#         10
+  C:0921H         LINE#         12
+  C:0923H         LINE#         13
+  C:0926H         LINE#         14
+  C:0929H         LINE#         15
+  C:092CH         LINE#         16
+  C:092FH         LINE#         18
+  C:0931H         LINE#         19
+  C:0933H         LINE#         20
+  C:0935H         LINE#         21
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _USART_SENDBYTE
+  D:0007H         SYMBOL        byteData
+  C:0990H         LINE#         26
+  C:0990H         LINE#         27
+  C:0990H         LINE#         28
+  C:0992H         LINE#         29
+  C:0995H         LINE#         30
+  C:0997H         LINE#         31
+  -------         ENDPROC       _USART_SENDBYTE
+  -------         PROC          _USART_SENDSTRING
+  D:0001H         SYMBOL        strData
+  C:0966H         LINE#         33
+  C:0966H         LINE#         34
+  C:0966H         LINE#         35
+  C:096CH         LINE#         36
+  C:096CH         LINE#         37
+  C:096FH         LINE#         38
+  C:0976H         LINE#         39
+  C:0978H         LINE#         41
+  -------         ENDPROC       _USART_SENDSTRING
+  -------         ENDMOD        UART
+
+  -------         MODULE        ESP8266
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0008H         PUBLIC        AT_CIPMUX
+  D:0016H         PUBLIC        AT_CIPSTART
+  D:0043H         PUBLIC        AT_CWJAP
+  C:094FH         PUBLIC        Esp8266_Init
+  -------         PROC          ESP8266_INIT
+  C:094FH         LINE#         12
+  C:094FH         LINE#         13
+  C:094FH         LINE#         14
+  C:0958H         LINE#         17
+  C:095DH         LINE#         18
+  -------         ENDPROC       ESP8266_INIT
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/14/2022  22:59:38  PAGE 4
+
+
+  -------         ENDMOD        ESP8266
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0979H         PUBLIC        _delay
+  -------         PROC          _DELAY
+  D:0007H         SYMBOL        ms
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0005H         SYMBOL        j
+  -------         ENDDO         
+  C:0979H         LINE#         3
+  C:0979H         LINE#         4
+  C:0979H         LINE#         6
+  C:097DH         LINE#         7
+  C:097DH         LINE#         8
+  C:097FH         LINE#         9
+  C:0981H         LINE#         11
+  C:0981H         LINE#         12
+  C:0983H         LINE#         13
+  C:0985H         LINE#         14
+  C:0987H         LINE#         17
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        ?C?CLDPTR
+  C:0936H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00F5H BYTE (11%) *
+******************************************************************************
+
+Program Size: data=108.0 xdata=0 code=414
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

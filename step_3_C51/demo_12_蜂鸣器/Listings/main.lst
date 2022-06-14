@@ -1,0 +1,39 @@
+C51 COMPILER V9.54   MAIN                                                                  06/09/2022 22:17:34 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\DELAY) DEBUG OBJECTEXTEND PR
+                    -INT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "DELAY.H"
+   3          
+   4          sbit beep = P1^5;
+   5          
+   6          void main()
+   7          {
+   8   1         int i;
+   9   1         for(i = 0 ; i < 1000 ; i++)
+  10   1         {
+  11   2            beep = ~beep;
+  12   2            delay(10);
+  13   2         }
+  14   1         while(1);
+  15   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
