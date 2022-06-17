@@ -356,7 +356,7 @@ while(1);
 **/
 
 // *****************ADC - 温度传感器*****************
-/**
+
 
 	u16 adcx;
 	float temp;
@@ -392,10 +392,10 @@ while(1);
 		LCD_ShowxNum(164,170,temperate*100,2,16,0X80);//显示温度小数部分
 		delay_ms(250);
 	}
-**/
 
 
 
+/**
 	u16 adcx;
 	float temp;
  	u8 t=0;	 
@@ -456,7 +456,8 @@ while(1);
 			t=0;
 		}	    
 		delay_ms(10);	
-	}							
+	}	
+**/	
 
 }
 

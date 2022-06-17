@@ -1,53 +1,88 @@
-C51 COMPILER V9.54   MAIN                                                                  06/14/2022 22:59:37 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  06/17/2022 17:53:21 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DELAY) DEBU
-                    -G OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c COMPACT OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DEL
+                    -AY;.\LCD) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
 
 line level    source
 
    1          #include <REGX52.H>
-   2          #include "uart.h"
-   3          #include "esp8266.h"
-   4          
-   5          void main()
-   6          {
-   7   1      
-   8   1         Uart_Init();
-   9   1         Esp8266_Init();
-  10   1         while(1)
-  11   1         {
-  12   2            
-  13   2         }
-  14   1      
-  15   1      }
-  16          
-  17          void usart() interrupt 4
-  18          {
-  19   1         if(RI == 1) // 接收中断
+   2          
+   3          
+   4          #include "uart.h"
+   5          #include "esp8266.h"
+   6          #include "delay.h"
+   7          #include "LCD1602.h"
+   8          #include<string.h>
+   9          
+  10          int index = 0;
+  11          int clear = 0;
+  12          char str[32] = "";
+  13          
+  14          void main()
+  15          {
+  16   1         Uart_Init();
+  17   1         LCD_Init();
+  18   1         Esp8266_Init_Tcp_Client();
+  19   1         while(1)
   20   1         {
-  21   2            if(SBUF == 'o') P2_0 = 0;
-  22   2            if(SBUF == 'k') P2_1 = 0;
-  23   2            if(SBUF == 'e') P2_3 = 0;
-  24   2            //LCD_ShowHexNum(1,1,SBUF,2); // 如果同时设置LCD显示会影响LED
-  25   2            //返还给串口
-  26   2      
-  27   2            RI = 0;
-  28   2         }  
-  29   1      }
+  21   2            while(P3_3 == 0)
+  22   2            {
+  23   3               delay(10);
+  24   3               while(P3_3 == 0);
+  25   3               Esp8266_CIPMUX(); // 设置多连接
+  26   3               delay(10);
+  27   3               USART_SendString(AT_CIPSTART);
+  28   3               delay(10);
+  29   3            }
+  30   2         }
+  31   1      
+  32   1      }
+  33          
+  34          void usart() interrupt 4
+  35          {
+  36   1         
+  37   1         if(RI == 1)// 接收中断
+  38   1         {
+  39   2            if(SBUF == '\r'){  // 接收结束标志位
+  40   3               clear = 1;
+  41   3            }else{
+  42   3               str[index] = SBUF;
+  43   3               index++;
+  44   3            }
+  45   2            
+  46   2            if(clear == 1){ // 数据接收完成
+  47   3               if(strstr(str, "CONNECTEDWIFI") != NULL){ // wifi链接成功，TCP客户端链接服务端
+  48   4                  P2_0 = 0;
+  49   4                  P2_1 = 0;
+  50   4                  //Esp8266_CIPMUX(); // 设置多连接
+  51   4                  //Esp8266_TCP_CLIENT_CONNECT(); // TCP连接
+  52   4               }
+  53   3               str[32] = "";
+*** WARNING C260 IN LINE 53 OF main.c: '=': pointer truncation
+C51 COMPILER V9.54   MAIN                                                                  06/17/2022 17:53:21 PAGE 2   
+
+  54   3               index = 0;
+  55   3               clear = 0;
+  56   3            
+  57   3            }
+  58   2            RI = 0;
+  59   2         
+  60   2         }
+  61   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     43    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    198    ----
+   CONSTANT SIZE    =     15    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
+   PDATA SIZE       =     36    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
