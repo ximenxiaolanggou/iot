@@ -3,20 +3,45 @@
 #include "uart.h"
 #include "delay.h"
 #include <string.h>
+#include "LCD1602.h"
+#include <INTRINS.H>
+char CONNECTED_READY = 0;
+char AT_CWMODE[] = "AT+CWMODE=3\r\n"; // 设置为 softAP+station 共存模式
+char AT_RST[] = "AT+RST\r\n"; // 重启生效
+char AT_CIPMODE[] = "AT+CIPMODE=1\r\n"; // 开启透传模式
+char AT_CIPSEND[] = "AT+CIPSEND\r\n"; // 开始透传发送
+char AT_CIPMUX[] = "AT+CIPMUX=0\r\n"; // 单连接
+char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
+char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"192.168.28.154\",11111\r\n";
 
-
-char AT_CIPMUX[] = "AT+CIPMUX=1\r\n";
-char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
-char AT_CIPSTART[] = "AT+CIPSTART=1,\"TCP\",\"192.168.2.31\",11111\r\n";
 
 // TCP客户端初始化
 void Esp8266_Init_Tcp_Client(void)
 {
 
+	USART_SendString(AT_CWMODE);
+	delay_ns(1); // 1s
+	
+	USART_SendString(AT_RST);
+	delay_ns(1); // 1s
+	
+	USART_SendString(AT_CWJAP);
+	delay_ns(6); // 6000ms
+	
 	USART_SendString(AT_CIPMUX);
-	delay(100); // 100ms
+	delay_ns(1); // 1000ms
+	
+	USART_SendString(AT_CIPMODE);
+	delay_ns(2); // 2000ms
+	
 	USART_SendString(AT_CIPSTART);
-	delay(100); // 100ms
+	delay_ns(6); // 6000ms
+	
+	USART_SendString(AT_CIPSEND);
+	delay_ns(2); // 2000ms
+	
+	CONNECTED_READY = 1;
+
 }
 
 // 8266 发送命令

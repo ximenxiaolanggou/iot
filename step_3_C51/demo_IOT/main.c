@@ -1,15 +1,15 @@
 #include <REGX52.H>
-
-
 #include "uart.h"
 #include "esp8266.h"
 #include "delay.h"
 #include "LCD1602.h"
-#include<string.h>
+#include <string.h>
+#include <INTRINS.H>
 
 int index = 0;
 int clear = 0;
 char str[32] = "";
+
 
 void main()
 {
@@ -18,14 +18,11 @@ void main()
 	Esp8266_Init_Tcp_Client();
 	while(1)
 	{
-		while(P3_3 == 0)
+		if(CONNECTED_READY)
 		{
-			delay(10);
-			while(P3_3 == 0);
-			Esp8266_CIPMUX(); // 设置多连接
-			delay(10);
-			USART_SendString(AT_CIPSTART);
-			delay(10);
+			P2_0 = 0;
+			USART_SendString("test123");
+			delay_ns(1);
 		}
 	}
 

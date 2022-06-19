@@ -1,7 +1,7 @@
 #ifndef __ESP8266_H__
 #define __ESP8266_H__
 
-
+extern char CONNECTED_READY;
 char AT_CIPMUX[];
 char AT_CWJAP[];
 char AT_CIPSTART[];

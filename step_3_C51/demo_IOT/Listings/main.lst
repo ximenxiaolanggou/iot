@@ -1,25 +1,25 @@
-C51 COMPILER V9.54   MAIN                                                                  06/17/2022 17:53:21 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  06/19/2022 22:17:59 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c COMPACT OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DEL
-                    -AY;.\LCD) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE main.c LARGE OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\
+                    -DELAY;.\LCD) DEBUG PRINT(.\Listings\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
 
 line level    source
 
    1          #include <REGX52.H>
-   2          
-   3          
-   4          #include "uart.h"
-   5          #include "esp8266.h"
-   6          #include "delay.h"
-   7          #include "LCD1602.h"
-   8          #include<string.h>
-   9          
-  10          int index = 0;
-  11          int clear = 0;
-  12          char str[32] = "";
+   2          #include "uart.h"
+   3          #include "esp8266.h"
+   4          #include "delay.h"
+   5          #include "LCD1602.h"
+   6          #include <string.h>
+   7          #include <INTRINS.H>
+   8          
+   9          int index = 0;
+  10          int clear = 0;
+  11          char str[32] = "";
+  12          
   13          
   14          void main()
   15          {
@@ -28,60 +28,61 @@ line level    source
   18   1         Esp8266_Init_Tcp_Client();
   19   1         while(1)
   20   1         {
-  21   2            while(P3_3 == 0)
+  21   2            if(CONNECTED_READY)
   22   2            {
-  23   3               delay(10);
-  24   3               while(P3_3 == 0);
-  25   3               Esp8266_CIPMUX(); // 设置多连接
-  26   3               delay(10);
-  27   3               USART_SendString(AT_CIPSTART);
-  28   3               delay(10);
-  29   3            }
-  30   2         }
-  31   1      
-  32   1      }
-  33          
-  34          void usart() interrupt 4
-  35          {
-  36   1         
-  37   1         if(RI == 1)// 接收中断
-  38   1         {
-  39   2            if(SBUF == '\r'){  // 接收结束标志位
-  40   3               clear = 1;
-  41   3            }else{
-  42   3               str[index] = SBUF;
-  43   3               index++;
-  44   3            }
-  45   2            
-  46   2            if(clear == 1){ // 数据接收完成
-  47   3               if(strstr(str, "CONNECTEDWIFI") != NULL){ // wifi链接成功，TCP客户端链接服务端
-  48   4                  P2_0 = 0;
-  49   4                  P2_1 = 0;
-  50   4                  //Esp8266_CIPMUX(); // 设置多连接
-  51   4                  //Esp8266_TCP_CLIENT_CONNECT(); // TCP连接
-  52   4               }
-  53   3               str[32] = "";
-*** WARNING C260 IN LINE 53 OF main.c: '=': pointer truncation
-C51 COMPILER V9.54   MAIN                                                                  06/17/2022 17:53:21 PAGE 2   
+  23   3               P2_0 = 0;
+  24   3               USART_SendString("test123");
+  25   3               delay_ns(1);
+  26   3            }
+  27   2         }
+  28   1      
+  29   1      }
+  30          
+  31          void usart() interrupt 4
+  32          {
+  33   1         
+  34   1         if(RI == 1)// 接收中断
+  35   1         {
+  36   2            if(SBUF == '\r'){  // 接收结束标志位
+  37   3               clear = 1;
+  38   3            }else{
+  39   3               str[index] = SBUF;
+  40   3               index++;
+  41   3            }
+  42   2            
+  43   2            if(clear == 1){ // 数据接收完成
+  44   3               if(strstr(str, "CONNECTEDWIFI") != NULL){ // wifi链接成功，TCP客户端链接服务端
+  45   4                  P2_0 = 0;
+  46   4                  P2_1 = 0;
+  47   4                  //Esp8266_CIPMUX(); // 设置多连接
+  48   4                  //Esp8266_TCP_CLIENT_CONNECT(); // TCP连接
+  49   4               }
+  50   3               str[32] = "";
+*** WARNING C260 IN LINE 50 OF main.c: '=': pointer truncation
+  51   3               index = 0;
+  52   3               clear = 0;
+  53   3            
+C51 COMPILER V9.54   MAIN                                                                  06/19/2022 22:17:59 PAGE 2   
 
-  54   3               index = 0;
-  55   3               clear = 0;
-  56   3            
-  57   3            }
-  58   2            RI = 0;
-  59   2         
-  60   2         }
-  61   1      }
+  54   3            }
+  55   2            RI = 0;
+  56   2         
+  57   2         }
+  58   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    198    ----
-   CONSTANT SIZE    =     15    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =     36    ----
+   CODE SIZE        =    208    ----
+   CONSTANT SIZE    =     23    ----
+   XDATA SIZE       =     36    ----
+   PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
 END OF MODULE INFORMATION.
 
 
