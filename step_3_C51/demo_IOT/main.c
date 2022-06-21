@@ -3,6 +3,7 @@
 #include "esp8266.h"
 #include "delay.h"
 #include "LCD1602.h"
+#include "mqtt.h"
 #include <string.h>
 #include <INTRINS.H>
 
@@ -44,7 +45,7 @@ void main()
 		if(CONNECTED_READY)
 		{
 			P2_0 = 0;
-			USART_SendString("test123");
+
 			delay_ns(1);
 		}
 	}

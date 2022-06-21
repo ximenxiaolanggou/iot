@@ -2,7 +2,8 @@
 ".\Objects\uart.obj",
 ".\Objects\esp8266.obj",
 ".\Objects\DELAY.obj",
-".\Objects\LCD1602.obj" 
+".\Objects\LCD1602.obj",
+".\Objects\mqtt.obj" 
 TO ".\Objects\project" 
-PRINT(".\Listings\project.m51") RAMSIZE(256) 
-DISABLEWARNING (16) 
+
+PRINT(".\Listings\project.map") REMOVEUNUSED 

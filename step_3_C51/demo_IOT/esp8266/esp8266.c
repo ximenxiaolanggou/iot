@@ -2,6 +2,7 @@
 #include "esp8266.h"
 #include "uart.h"
 #include "delay.h"
+#include "mqtt.h"
 #include <string.h>
 #include "LCD1602.h"
 #include <INTRINS.H>
@@ -12,7 +13,7 @@ char AT_CIPMODE[] = "AT+CIPMODE=1\r\n"; // 开启透传模式
 char AT_CIPSEND[] = "AT+CIPSEND\r\n"; // 开始透传发送
 char AT_CIPMUX[] = "AT+CIPMUX=0\r\n"; // 单连接
 char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
-char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"192.168.28.154\",11111\r\n";
+char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"150.158.78.149\",1883\r\n";
 
 
 // TCP客户端初始化
@@ -31,15 +32,18 @@ void Esp8266_Init_Tcp_Client(void)
 	USART_SendString(AT_CIPMUX);
 	delay_ns(1); // 1000ms
 	
-	USART_SendString(AT_CIPMODE);
-	delay_ns(2); // 2000ms
+	
 	
 	USART_SendString(AT_CIPSTART);
 	delay_ns(6); // 6000ms
 	
-	USART_SendString(AT_CIPSEND);
+	USART_SendString(AT_CIPMODE);
 	delay_ns(2); // 2000ms
 	
+	USART_SendString(AT_CIPSEND);
+	delay_ns(2); // 2000ms
+	MQTT_Login("test","wogua","wogua");
+	delay_ns(2); // 2000ms
 	CONNECTED_READY = 1;
 
 }

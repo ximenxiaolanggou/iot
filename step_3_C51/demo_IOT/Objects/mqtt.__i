@@ -1,0 +1,1 @@
+"mqtt\mqtt.c" LARGE OMF2 OPTIMIZE (8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DELAY;.\LCD;.\mqtt) DEBUG PRINT(.\Listings\mqtt.lst) TABS (3) OBJECT(.\Objects\mqtt.obj)
