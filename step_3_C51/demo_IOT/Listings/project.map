@@ -1,4 +1,4 @@
-LX51 LINKER/LOCATER V4.66.41.0                                                          06/19/2022  22:17:59  PAGE 1
+LX51 LINKER/LOCATER V4.66.41.0                                                          06/21/2022  09:19:35  PAGE 1
 
 
 LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
@@ -67,7 +67,7 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 
 * * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
 000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 2
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 2
 
 
 000003H   000022H   000020H   ---    ---      **GAP**
@@ -135,7 +135,7 @@ USART/MAIN                              ----- -----
   +--> _STRSTR/STRSTR
 
 ?CO?MAIN                                ----- -----
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 3
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 3
 
 
 
@@ -203,7 +203,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\project (MAIN)
       010008D5H   CODE     ---       ?C?ILDIX
       01000846H   CODE     ---       ?C?IMUL
       01000858H   CODE     ---       ?C?UIDIV
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 4
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 4
 
 
       00000000H   NUMBER   ---       ?C?XDATASEG
@@ -271,7 +271,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\project (MAIN)
       01000CA9H   CODE     ---       LCD_Delay
 *SFR* 000000A0H.7 DATA     BIT       LCD_EN
       01000C7CH   CODE     ---       LCD_Init
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 5
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 5
 
 
 *SFR* 000000A0H.6 DATA     BIT       LCD_RS
@@ -339,7 +339,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\project (MAIN)
 *SFR* 00000098H.6 DATA     BIT       SM1
 *SFR* 00000098H.5 DATA     BIT       SM2
 *SFR* 00000081H   DATA     BYTE      SP
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 6
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 6
 
 
       02000099H   XDATA    ---       str
@@ -407,7 +407,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       000000A0H.2 SFRSYM    DATA     BIT       P2_2
       00000090H.3 SFRSYM    DATA     BIT       P1_3
       00000080H.4 SFRSYM    DATA     BIT       P0_4
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 7
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 7
 
 
       000000B0H.2 SFRSYM    DATA     BIT       P3_2
@@ -475,7 +475,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       000000D0H   SFRSYM    DATA     BIT       P
       00000098H.7 SFRSYM    DATA     BIT       SM0
       0000008AH   SFRSYM    DATA     BYTE      TL0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 8
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 8
 
 
       00000098H.6 SFRSYM    DATA     BIT       SM1
@@ -505,45 +505,45 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       000000D0H   SFRSYM    DATA     BYTE      PSW
 
       01000C29H   BLOCK     CODE     ---       LVL=0
-      01000C29H   LINE      CODE     ---       #14
-      01000C29H   LINE      CODE     ---       #15
-      01000C29H   LINE      CODE     ---       #16
-      01000C2CH   LINE      CODE     ---       #17
-      01000C2FH   LINE      CODE     ---       #18
-      01000C32H   LINE      CODE     ---       #19
-      01000C32H   LINE      CODE     ---       #20
-      01000C32H   LINE      CODE     ---       #21
-      01000C38H   LINE      CODE     ---       #22
-      01000C38H   LINE      CODE     ---       #23
-      01000C3AH   LINE      CODE     ---       #24
-      01000C43H   LINE      CODE     ---       #25
-      01000C48H   LINE      CODE     ---       #26
-      01000C48H   LINE      CODE     ---       #27
+      01000C29H   LINE      CODE     ---       #37
+      01000C29H   LINE      CODE     ---       #38
+      01000C29H   LINE      CODE     ---       #39
+      01000C2CH   LINE      CODE     ---       #40
+      01000C2FH   LINE      CODE     ---       #41
+      01000C32H   LINE      CODE     ---       #42
+      01000C32H   LINE      CODE     ---       #43
+      01000C32H   LINE      CODE     ---       #44
+      01000C38H   LINE      CODE     ---       #45
+      01000C38H   LINE      CODE     ---       #46
+      01000C3AH   LINE      CODE     ---       #47
+      01000C43H   LINE      CODE     ---       #48
+      01000C48H   LINE      CODE     ---       #49
+      01000C48H   LINE      CODE     ---       #50
       ---         BLOCKEND  ---      ---       LVL=0
 
       01000A88H   BLOCK     CODE     ---       LVL=0
-      01000A88H   LINE      CODE     ---       #31
-      01000AA5H   LINE      CODE     ---       #34
-      01000AA8H   LINE      CODE     ---       #35
-      01000AA8H   LINE      CODE     ---       #36
-      01000AADH   LINE      CODE     ---       #37
-      01000AB5H   LINE      CODE     ---       #38
-      01000AB7H   LINE      CODE     ---       #39
-      01000ACAH   LINE      CODE     ---       #40
-      01000AD8H   LINE      CODE     ---       #41
-      01000AD8H   LINE      CODE     ---       #43
-      01000AE4H   LINE      CODE     ---       #44
-      01000B00H   LINE      CODE     ---       #45
-      01000B02H   LINE      CODE     ---       #46
-      01000B04H   LINE      CODE     ---       #49
-      01000B04H   LINE      CODE     ---       #50
-      01000B0AH   LINE      CODE     ---       #51
-      01000B11H   LINE      CODE     ---       #52
-      01000B17H   LINE      CODE     ---       #54
-      01000B17H   LINE      CODE     ---       #55
-      01000B19H   LINE      CODE     ---       #57
-      01000B19H   LINE      CODE     ---       #58
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 9
+      01000A88H   LINE      CODE     ---       #54
+      01000AA5H   LINE      CODE     ---       #57
+      01000AA8H   LINE      CODE     ---       #58
+      01000AA8H   LINE      CODE     ---       #59
+      01000AADH   LINE      CODE     ---       #60
+      01000AB5H   LINE      CODE     ---       #61
+      01000AB7H   LINE      CODE     ---       #62
+      01000ACAH   LINE      CODE     ---       #63
+      01000AD8H   LINE      CODE     ---       #64
+      01000AD8H   LINE      CODE     ---       #66
+      01000AE4H   LINE      CODE     ---       #67
+      01000B00H   LINE      CODE     ---       #68
+      01000B02H   LINE      CODE     ---       #69
+      01000B04H   LINE      CODE     ---       #72
+      01000B04H   LINE      CODE     ---       #73
+      01000B0AH   LINE      CODE     ---       #74
+      01000B11H   LINE      CODE     ---       #75
+      01000B17H   LINE      CODE     ---       #77
+      01000B17H   LINE      CODE     ---       #78
+      01000B19H   LINE      CODE     ---       #80
+      01000B19H   LINE      CODE     ---       #81
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 9
 
 
       ---         BLOCKEND  ---      ---       LVL=0
@@ -611,7 +611,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       000000CAH   SFRSYM    DATA     BYTE      RCAP2L
       000000C8H.1 SFRSYM    DATA     BIT       C_T2
       000000B0H.6 SFRSYM    DATA     BIT       WR
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 10
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 10
 
 
       000000C8H.5 SFRSYM    DATA     BIT       RCLK
@@ -679,7 +679,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       01000C52H   LINE      CODE     ---       #13
       01000C55H   LINE      CODE     ---       #14
       01000C58H   LINE      CODE     ---       #15
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 11
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 11
 
 
       01000C5BH   LINE      CODE     ---       #16
@@ -747,7 +747,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       00000080H.4 SFRSYM    DATA     BIT       P0_4
       000000B0H.2 SFRSYM    DATA     BIT       P3_2
       000000A0H.3 SFRSYM    DATA     BIT       P2_3
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 12
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 12
 
 
       00000090H.4 SFRSYM    DATA     BIT       P1_4
@@ -815,7 +815,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       0000008AH   SFRSYM    DATA     BYTE      TL0
       00000098H.6 SFRSYM    DATA     BIT       SM1
       0000008BH   SFRSYM    DATA     BYTE      TL1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 13
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 13
 
 
       00000098H.5 SFRSYM    DATA     BIT       SM2
@@ -883,7 +883,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       01000CB5H   LINE      CODE     ---       #26
       01000CB7H   LINE      CODE     ---       #27
       01000CB9H   LINE      CODE     ---       #29
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 14
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 14
 
 
       01000CB9H   LINE      CODE     ---       #31
@@ -951,7 +951,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       000000A0H.6 SFRSYM    DATA     BIT       P2_6
       00000090H.7 SFRSYM    DATA     BIT       P1_7
       000000B0H.6 SFRSYM    DATA     BIT       P3_6
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 15
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 15
 
 
       000000A0H.7 SFRSYM    DATA     BIT       P2_7
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       00000083H   SFRSYM    DATA     BYTE      DPH
       000000A0H.5 SFRSYM    DATA     BIT       LCD_RW
       00000082H   SFRSYM    DATA     BYTE      DPL
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 16
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 16
 
 
       000000C8H.3 SFRSYM    DATA     BIT       EXEN2
@@ -1087,7 +1087,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
       00000007H   SYMBOL    DATA     BYTE      Line
       00000005H   SYMBOL    DATA     BYTE      Column
       00000002H   SYMBOL    DATA     BYTE      i
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/19/2022  22:17:59  PAGE 17
+LX51 LINKER/LOCATER V4.66.41.0                                                        06/21/2022  09:19:35  PAGE 17
 
 
       00000007H   SYMBOL    DATA     BYTE      Line
