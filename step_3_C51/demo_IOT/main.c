@@ -1,14 +1,19 @@
 #include <REGX52.H>
+#include <string.h>
+#include <stdio.h>
 #include "uart.h"
 #include "esp8266.h"
 #include "delay.h"
 #include "LCD1602.h"
 #include "mqtt.h"
-#include <string.h>
+#include "timer_0.h"
 #include <INTRINS.H>
+#include "DS18B20.h"
+
 
 int index = 0;
 int clear = 0;
+
 char str[32] = "";
 
 /*
@@ -35,8 +40,11 @@ C0 00 // 发送心跳
 30 1D 00 10 4E 4A 55 53 54 5A 4A 2F 4C 49 53 2F 74 78 30 31 68 65 6C 6C 6F 20 77 6F 6C 64 21 // 发布
 */
 
+
 void main()
 {
+	DS18B20_ConvertT();
+	Timer0_Init();
 	Uart_Init();
 	LCD_Init();
 	Esp8266_Init_Tcp_Client();
@@ -45,16 +53,16 @@ void main()
 		if(CONNECTED_READY)
 		{
 			P2_0 = 0;
-
-			delay_ns(1);
+			DS18B20_ConvertT();
 		}
 	}
 
 }
 
+
 void usart() interrupt 4
 {
-	
+
 	if(RI == 1)// 接收中断
 	{
 		if(SBUF == '\r'){  // 接收结束标志位

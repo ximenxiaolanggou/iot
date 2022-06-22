@@ -1,10 +1,11 @@
-C51 COMPILER V9.54   ESP8266                                                               06/21/2022 22:16:17 PAGE 1   
+C51 COMPILER V9.54   ESP8266                                                               06/22/2022 18:22:41 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE ESP8266
 OBJECT MODULE PLACED IN .\Objects\esp8266.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE esp8266\esp8266.c LARGE OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.
-                    -\esp8266;.\DELAY;.\LCD;.\mqtt) DEBUG PRINT(.\Listings\esp8266.lst) TABS(3) OBJECT(.\Objects\esp8266.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE esp8266\esp8266.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8
+                    -266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\esp8266.lst) TABS(3) OBJECT(.
+                    -\Objects\esp8266.obj)
 
 line level    source
 
@@ -22,89 +23,90 @@ line level    source
   12          char AT_CIPMODE[] = "AT+CIPMODE=1\r\n"; // 开启透传模式
   13          char AT_CIPSEND[] = "AT+CIPSEND\r\n"; // 开始透传发送
   14          char AT_CIPMUX[] = "AT+CIPMUX=0\r\n"; // 单连接
-  15          char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
-  16          char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"150.158.78.149\",1883\r\n";
-  17          
+  15          //char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
+  16          char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
+  17          char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"150.158.78.149\",1883\r\n";
   18          
-  19          // TCP客户端初始化
-  20          void Esp8266_Init_Tcp_Client(void)
-  21          {
-  22   1      
-  23   1         USART_SendString(AT_CWMODE);
-  24   1         delay_ns(1); // 1s
-  25   1         
-  26   1         USART_SendString(AT_RST);
-  27   1         delay_ns(1); // 1s
-  28   1         
-  29   1         USART_SendString(AT_CWJAP);
-  30   1         delay_ns(6); // 6000ms
-  31   1         
-  32   1         USART_SendString(AT_CIPMUX);
-  33   1         delay_ns(1); // 1000ms
-  34   1         
+  19          
+  20          // TCP客户端初始化
+  21          void Esp8266_Init_Tcp_Client(void)
+  22          {
+  23   1      
+  24   1         USART_SendString(AT_CWMODE);
+  25   1         delay_ns(1); // 1s
+  26   1         
+  27   1         USART_SendString(AT_RST);
+  28   1         delay_ns(1); // 1s
+  29   1         
+  30   1         USART_SendString(AT_CWJAP);
+  31   1         delay_ns(6); // 6000ms
+  32   1         
+  33   1         USART_SendString(AT_CIPMUX);
+  34   1         delay_ns(1); // 1000ms
   35   1         
   36   1         
-  37   1         USART_SendString(AT_CIPSTART);
-  38   1         delay_ns(6); // 6000ms
-  39   1         
-  40   1         USART_SendString(AT_CIPMODE);
-  41   1         delay_ns(2); // 2000ms
-  42   1         
-  43   1         USART_SendString(AT_CIPSEND);
-  44   1         delay_ns(2); // 2000ms
-  45   1         MQTT_Login("test","wogua","wogua");
-  46   1         delay_ns(2); // 2000ms
-  47   1         CONNECTED_READY = 1;
-  48   1      
-  49   1      }
-  50          
-  51          // 8266 发送命令
-  52          void Esp8266_Send_Command(char *cmd,char ack,int waittime)
-  53          {
-  54   1      
-C51 COMPILER V9.54   ESP8266                                                               06/21/2022 22:16:17 PAGE 2   
+  37   1         
+  38   1         USART_SendString(AT_CIPSTART);
+  39   1         delay_ns(6); // 6000ms
+  40   1         
+  41   1         USART_SendString(AT_CIPMODE);
+  42   1         delay_ns(2); // 2000ms
+  43   1         
+  44   1         USART_SendString(AT_CIPSEND);
+  45   1         delay_ns(2); // 2000ms
+  46   1         MQTT_Login("test","wogua","wogua");
+  47   1         delay_ns(2); // 2000ms
+  48   1         TR0 = 1;// 开启定时器0 发送心跳包
+  49   1         delay_ns(1); // 1000ms
+  50   1         MQTT_Sub("test");
+  51   1         delay_ns(1); // 1000ms
+  52   1         CONNECTED_READY = 1;
+  53   1      
+C51 COMPILER V9.54   ESP8266                                                               06/22/2022 18:22:41 PAGE 2   
 
-  55   1      }
-*** WARNING C280 IN LINE 52 OF esp8266\esp8266.c: 'cmd': unreferenced local variable
-*** WARNING C280 IN LINE 52 OF esp8266\esp8266.c: 'ack': unreferenced local variable
-*** WARNING C280 IN LINE 52 OF esp8266\esp8266.c: 'waittime': unreferenced local variable
-  56          
-  57          // TCP客户端链接
-  58          void Esp8266_TCP_CLIENT_CONNECT(void)
-  59          {
-  60   1         USART_SendString(AT_CIPSTART);
-  61   1         delay(10);
-  62   1      }
-  63          
-  64          // 多连接
-  65          void Esp8266_CIPMUX(void)
-  66          {
-  67   1         USART_SendString(AT_CIPMUX);
-  68   1         delay(10);
-  69   1      }
-  70          
-  71          
-  72          // 发送数据 数据被$$包含
-  73          void Esp8266_SendData(char *Data){
-  74   1         char *AtData = "AT+CIPSEND=$";
-  75   1         strcat(AtData,Data);
-  76   1         strcat(AtData,"$");
-  77   1         USART_SendString(AtData);
-  78   1      }
+  54   1      }
+  55          
+  56          // 8266 发送命令
+  57          void Esp8266_Send_Command(char *cmd,char ack,int waittime)
+  58          {
+  59   1      
+  60   1      }
+*** WARNING C280 IN LINE 57 OF esp8266\esp8266.c: 'cmd': unreferenced local variable
+*** WARNING C280 IN LINE 57 OF esp8266\esp8266.c: 'ack': unreferenced local variable
+*** WARNING C280 IN LINE 57 OF esp8266\esp8266.c: 'waittime': unreferenced local variable
+  61          
+  62          // TCP客户端链接
+  63          void Esp8266_TCP_CLIENT_CONNECT(void)
+  64          {
+  65   1         USART_SendString(AT_CIPSTART);
+  66   1         delay(10);
+  67   1      }
+  68          
+  69          // 多连接
+  70          void Esp8266_CIPMUX(void)
+  71          {
+  72   1         USART_SendString(AT_CIPMUX);
+  73   1         delay(10);
+  74   1      }
+  75          
+  76          
+  77          // 发送数据 数据被$$包含
+  78          void Esp8266_SendData(char *Data){
+  79   1         char *AtData = "AT+CIPSEND=$";
+  80   1         strcat(AtData,Data);
+  81   1         strcat(AtData,"$");
+  82   1         USART_SendString(AtData);
+  83   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    288    ----
+   CODE SIZE        =    309    ----
    CONSTANT SIZE    =     26    ----
-   XDATA SIZE       =    148      12
+   XDATA SIZE       =    144      12
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
-   EDATA SIZE       =   ----    ----
-   HDATA SIZE       =   ----    ----
-   XDATA CONST SIZE =   ----    ----
-   FAR CONST SIZE   =   ----    ----
 END OF MODULE INFORMATION.
 
 

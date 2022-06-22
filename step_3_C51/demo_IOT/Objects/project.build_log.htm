@@ -8,26 +8,41 @@ Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: da da, da, LIC=----
  
 Tool Versions:
-Toolchain:       PK51 Prof. Develpers Kit  Version: 9.54
+Toolchain:       PK51 Prof. Developers Kit  Version: 9.54
 Toolchain Path:  C:\Keil_v5_51\C51\BIN
 C Compiler:      C51.exe V9.54
 Assembler:       A51.exe V8.02c
-Linker/Locator:  LX51.exe V4.66.41.0
-Library Manager: LIBX51.exe V4.30.1.0
-Hex Converter:   OHX51.exe V1.45.0.0
+Linker/Locator:  BL51.exe V6.22
+Library Manager: LIB51.exe V4.30.1.0
+Hex Converter:   OH51.exe V2.7.0.0
 CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
-D:\ximenxiaolanggou\iot\step_3_C51\demo_IOT\project.uvproj
-Project File Date:  06/17/2022
+D:\A_ximenxiaolanggou\MyGitHub\iot\step_3_C51\demo_IOT\project.uvproj
+Project File Date:  06/22/2022
 
 <h2>Output:</h2>
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling main.c...
+main.c(9): warning C318: can't open file 'timer_0.h'
+main.c(47): warning C206: 'Timer0_Init': missing function-prototype
+main.c(82): warning C260: '=': pointer truncation
+compiling uart.c...
+compiling esp8266.c...
+esp8266\esp8266.c(57): warning C280: 'cmd': unreferenced local variable
+esp8266\esp8266.c(57): warning C280: 'ack': unreferenced local variable
+esp8266\esp8266.c(57): warning C280: 'waittime': unreferenced local variable
+compiling DELAY.c...
+compiling LCD1602.c...
 compiling mqtt.c...
+compiling timer_0.c...
+timer0\timer_0.c(2): warning C318: can't open file 'timer_0.h'
+compiling DS18B20.c...
+compiling OneWire.c...
 linking...
-Program Size: data=9.0 xdata=275 const=60 code=2238
+Program Size: data=15.1 xdata=450 code=6765
 creating hex file from ".\Objects\project"...
-".\Objects\project" - 0 Error(s), 0 Warning(s).
+".\Objects\project" - 0 Error(s), 7 Warning(s).
 </pre>
 </body>
 </html>

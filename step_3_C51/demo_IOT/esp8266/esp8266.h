@@ -18,4 +18,7 @@ void Esp8266_CIPMUX(void);
 
 // 发送数据
 void Esp8266_SendData(char *Data);
+
+// 订阅主题
+void MQTT_Sub(char *topic);
 #endif

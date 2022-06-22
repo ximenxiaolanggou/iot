@@ -12,7 +12,8 @@ char AT_RST[] = "AT+RST\r\n"; // 重启生效
 char AT_CIPMODE[] = "AT+CIPMODE=1\r\n"; // 开启透传模式
 char AT_CIPSEND[] = "AT+CIPSEND\r\n"; // 开始透传发送
 char AT_CIPMUX[] = "AT+CIPMUX=0\r\n"; // 单连接
-char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
+//char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
+char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
 char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"150.158.78.149\",1883\r\n";
 
 
@@ -44,6 +45,10 @@ void Esp8266_Init_Tcp_Client(void)
 	delay_ns(2); // 2000ms
 	MQTT_Login("test","wogua","wogua");
 	delay_ns(2); // 2000ms
+	TR0 = 1;// 开启定时器0 发送心跳包
+	delay_ns(1); // 1000ms
+	MQTT_Sub("test");
+	delay_ns(1); // 1000ms
 	CONNECTED_READY = 1;
 
 }
