@@ -1,11 +1,11 @@
-C51 COMPILER V9.54   LCD1602                                                               06/22/2022 18:22:41 PAGE 1   
+C51 COMPILER V9.54   LCD1602                                                               06/23/2022 18:03:40 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE LCD1602
 OBJECT MODULE PLACED IN .\Objects\LCD1602.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE LCD\LCD1602.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;
-                    -.\DELAY;.\LCD;.\mqtt;.\timer0;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\LCD1602.lst) TABS(3) OBJECT(.\Obj
-                    -ects\LCD1602.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE LCD\LCD1602.c COMPACT OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp826
+                    -6;.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire) DEBUG OBJECTEXTEND PRINT(.\Listings\LCD1602.lst) TABS(3) OBJECT(.\O
+                    -bjects\LCD1602.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   51   1         LCD_RW=0;
   52   1         LCD_DataPort=Data;
   53   1         LCD_EN=1;
-C51 COMPILER V9.54   LCD1602                                                               06/22/2022 18:22:41 PAGE 2   
+C51 COMPILER V9.54   LCD1602                                                               06/23/2022 18:03:40 PAGE 2   
 
   54   1         LCD_Delay();
   55   1         LCD_EN=0;
@@ -126,7 +126,7 @@ line level    source
  113   1         LCD_SetCursor(Line,Column);
  114   1         for(i=0;String[i]!='\0';i++)
  115   1         {
-C51 COMPILER V9.54   LCD1602                                                               06/22/2022 18:22:41 PAGE 3   
+C51 COMPILER V9.54   LCD1602                                                               06/23/2022 18:03:40 PAGE 3   
 
  116   2            LCD_WriteData(String[i]);
  117   2         }
@@ -190,7 +190,7 @@ line level    source
  175   1         for(i=Length;i>0;i--)
  176   1         {
  177   2            LCD_WriteData(Number1/LCD_Pow(10,i-1)%10+'0');
-C51 COMPILER V9.54   LCD1602                                                               06/22/2022 18:22:41 PAGE 4   
+C51 COMPILER V9.54   LCD1602                                                               06/23/2022 18:03:40 PAGE 4   
 
  178   2         }
  179   1      }
@@ -241,10 +241,10 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    472    ----
+   CODE SIZE        =    431    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----      31
-   PDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----      29
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

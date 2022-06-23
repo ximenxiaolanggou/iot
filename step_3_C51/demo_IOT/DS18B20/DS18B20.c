@@ -12,7 +12,7 @@ void DS18B20_ConvertT(void)
 }
 
 // 温度读取
-float DS18B20_ReadT(void)
+float DS18B20_ReadT(char *TLTM)
 {
 	unsigned char TLSB, TMSB; 
 	int Temp;
@@ -24,5 +24,7 @@ float DS18B20_ReadT(void)
 	TMSB = OneWire_ReceiveByte();
 	Temp = (TMSB << 8) | TLSB;
 	T = Temp/16.0;
+	TLTM[1] = TLSB;
+	TLTM[0] = TMSB;
 	return T;
 }

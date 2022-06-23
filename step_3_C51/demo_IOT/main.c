@@ -1,20 +1,17 @@
 #include <REGX52.H>
 #include <string.h>
 #include <stdio.h>
+#include "LCD1602.h"
 #include "uart.h"
 #include "esp8266.h"
 #include "delay.h"
-#include "LCD1602.h"
 #include "mqtt.h"
 #include "timer_0.h"
-#include <INTRINS.H>
 #include "DS18B20.h"
-
 
 int index = 0;
 int clear = 0;
 
-char str[32] = "";
 
 /*
 10								  //固定头				
@@ -40,20 +37,20 @@ C0 00 // 发送心跳
 30 1D 00 10 4E 4A 55 53 54 5A 4A 2F 4C 49 53 2F 74 78 30 31 68 65 6C 6C 6F 20 77 6F 6C 64 21 // 发布
 */
 
-
 void main()
 {
-	DS18B20_ConvertT();
+	
+	LCD_Init();
 	Timer0_Init();
 	Uart_Init();
-	LCD_Init();
+	DS18B20_ConvertT();
 	Esp8266_Init_Tcp_Client();
 	while(1)
 	{
+		DS18B20_ConvertT();
 		if(CONNECTED_READY)
 		{
 			P2_0 = 0;
-			DS18B20_ConvertT();
 		}
 	}
 
@@ -65,25 +62,7 @@ void usart() interrupt 4
 
 	if(RI == 1)// 接收中断
 	{
-		if(SBUF == '\r'){  // 接收结束标志位
-			clear = 1;
-		}else{
-			str[index] = SBUF;
-			index++;
-		}
-		
-		if(clear == 1){ // 数据接收完成
-			if(strstr(str, "CONNECTEDWIFI") != NULL){ // wifi链接成功，TCP客户端链接服务端
-				P2_0 = 0;
-				P2_1 = 0;
-				//Esp8266_CIPMUX(); // 设置多连接
-				//Esp8266_TCP_CLIENT_CONNECT(); // TCP连接
-			}
-			str[32] = "";
-			index = 0;
-			clear = 0;
-		
-		}
+	
 		RI = 0;
 	
 	}

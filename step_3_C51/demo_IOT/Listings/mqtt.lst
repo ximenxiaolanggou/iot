@@ -1,11 +1,11 @@
-C51 COMPILER V9.54   MQTT                                                                  06/22/2022 18:22:41 PAGE 1   
+C51 COMPILER V9.54   MQTT                                                                  06/23/2022 18:03:39 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MQTT
 OBJECT MODULE PLACED IN .\Objects\mqtt.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE mqtt\mqtt.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\
-                    -DELAY;.\LCD;.\mqtt;.\timer0;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\mqtt.lst) TABS(3) OBJECT(.\Objects\
-                    -mqtt.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE mqtt\mqtt.c COMPACT OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;
+                    -.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire) DEBUG OBJECTEXTEND PRINT(.\Listings\mqtt.lst) TABS(3) OBJECT(.\Object
+                    -s\mqtt.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   50   2         }
   51   1         
   52   1         Data[index++] = 0x00;
-C51 COMPILER V9.54   MQTT                                                                  06/22/2022 18:22:41 PAGE 2   
+C51 COMPILER V9.54   MQTT                                                                  06/23/2022 18:03:39 PAGE 2   
 
   53   1         Data[index++] = (0x00 + strlen(password));
   54   1         while(*password != '\0')
@@ -80,92 +80,93 @@ line level    source
   66          
   67          // 心跳包
   68          void MQTT_Heart(){
-  69   1         
-  70   1         char heart_package = {0xC0, 0x00};
-  71   1      
-  72   1      }
-  73          
-  74          /*
-  75          82 // 固定头
-  76          09 // 数据长度不包含自己
-  77          00 01 //消息识别
-  78          00 04 //主题长度
-  79          74 65 73 74 //主题名
-  80          00 //Qos
-  81          */
-  82          // 订阅主题
-  83          void MQTT_Sub(char *topic){
-  84   1         int i = 0;
-  85   1         int index = 6;
-  86   1         char package[50] = "\0";
-  87   1         char fixed_header = 0x82; // 固定头
-  88   1         char data_len = 0x05 + strlen(topic);
-  89   1         
+  69   1      
+  70   1         USART_SendByte(0xC0);
+  71   1         USART_SendByte(0x00);
+  72   1      
+  73   1      }
+  74          
+  75          /*
+  76          82 // 固定头
+  77          09 // 数据长度不包含自己
+  78          00 01 //消息识别
+  79          00 04 //主题长度
+  80          74 65 73 74 //主题名
+  81          00 //Qos
+  82          */
+  83          // 订阅主题
+  84          void MQTT_Sub(char *topic){
+  85   1         int i = 0;
+  86   1         int index = 6;
+  87   1         char package[50] = "\0";
+  88   1         char fixed_header = 0x82; // 固定头
+  89   1         char data_len = 0x05 + strlen(topic);
   90   1         
-  91   1         package[0] = fixed_header;
-  92   1         package[1] = data_len;
-  93   1         package[2] = 0x00;
-  94   1         package[3] = 0x01;
-  95   1         package[4] = 0x00;
-  96   1         package[5] = (0x00 + strlen(topic));
-  97   1         
-  98   1         while(*topic != '\0')
-  99   1         {
- 100   2            package[index++] = *topic;
- 101   2            topic ++;
- 102   2         }
- 103   1         
- 104   1         package[index++] = 0x00;
- 105   1      
- 106   1         for(i = 0 ; i < index ; i ++){
- 107   2            USART_SendByte(package[i]);
- 108   2         }
- 109   1      
- 110   1      }
- 111          
- 112          // 发布
- 113          void MQTT_Pub(char *topic, char *msg) {
- 114   1         int i = 0;
-C51 COMPILER V9.54   MQTT                                                                  06/22/2022 18:22:41 PAGE 3   
+  91   1         
+  92   1         package[0] = fixed_header;
+  93   1         package[1] = data_len;
+  94   1         package[2] = 0x00;
+  95   1         package[3] = 0x01;
+  96   1         package[4] = 0x00;
+  97   1         package[5] = (0x00 + strlen(topic));
+  98   1         
+  99   1         while(*topic != '\0')
+ 100   1         {
+ 101   2            package[index++] = *topic;
+ 102   2            topic ++;
+ 103   2         }
+ 104   1         
+ 105   1         package[index++] = 0x00;
+ 106   1      
+ 107   1         for(i = 0 ; i < index ; i ++){
+ 108   2            USART_SendByte(package[i]);
+ 109   2         }
+ 110   1      
+ 111   1      }
+ 112          
+ 113          // 发布
+ 114          void MQTT_Pub(char *topic, char *msg) {
+C51 COMPILER V9.54   MQTT                                                                  06/23/2022 18:03:39 PAGE 3   
 
- 115   1         int index = 4;
- 116   1         char package[100] = "\0";
- 117   1         char fixed_header = 0x30; // 固定头
- 118   1         char data_len = 0x02 + strlen(topic) + strlen(msg);
- 119   1         
- 120   1         package[0] = fixed_header;
- 121   1         package[1] = data_len;
- 122   1         package[2] = 0x00;
- 123   1         package[3] = (0x00 + strlen(topic));
- 124   1         
- 125   1         while(*topic != '\0')
- 126   1         {
- 127   2            package[index++] = *topic;
- 128   2            topic ++;
- 129   2         }
- 130   1         
- 131   1         while(*msg != '\0')
- 132   1         {
- 133   2            package[index++] = *msg;
- 134   2            msg ++;
- 135   2         }
- 136   1         
- 137   1         package[index] = '\0';
- 138   1         
- 139   1         for(i = 0 ; i < index ; i ++){
- 140   2            USART_SendByte(package[i]);
- 141   2         }
- 142   1      }
- 143             
- 144          
+ 115   1         int i = 0;
+ 116   1         int index = 4;
+ 117   1         char package[100] = "\0";
+ 118   1         char fixed_header = 0x30; // 固定头
+ 119   1         char data_len = 0x02 + strlen(topic) + strlen(msg);
+ 120   1         
+ 121   1         package[0] = fixed_header;
+ 122   1         package[1] = data_len;
+ 123   1         package[2] = 0x00;
+ 124   1         package[3] = (0x00 + strlen(topic));
+ 125   1         
+ 126   1         while(*topic != '\0')
+ 127   1         {
+ 128   2            package[index++] = *topic;
+ 129   2            topic ++;
+ 130   2         }
+ 131   1         
+ 132   1         while(*msg != '\0')
+ 133   1         {
+ 134   2            package[index++] = *msg;
+ 135   2            msg ++;
+ 136   2         }
+ 137   1         
+ 138   1         package[index] = '\0';
+ 139   1         
+ 140   1         for(i = 0 ; i < index ; i ++){
+ 141   2            USART_SendByte(package[i]);
+ 142   2         }
+ 143   1      }
+ 144             
  145          
+ 146          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1227    ----
+   CODE SIZE        =   1054    ----
    CONSTANT SIZE    =    210    ----
-   XDATA SIZE       =   ----     248
-   PDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----     248
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

@@ -5,6 +5,6 @@
 void DS18B20_ConvertT(void);
 
 // 温度读取
-float DS18B20_ReadT(void);
+float DS18B20_ReadT(char *TLTM);
 
 #endif

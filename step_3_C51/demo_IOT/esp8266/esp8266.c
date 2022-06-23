@@ -4,7 +4,6 @@
 #include "delay.h"
 #include "mqtt.h"
 #include <string.h>
-#include "LCD1602.h"
 #include <INTRINS.H>
 char CONNECTED_READY = 0;
 char AT_CWMODE[] = "AT+CWMODE=3\r\n"; // 设置为 softAP+station 共存模式
@@ -50,12 +49,6 @@ void Esp8266_Init_Tcp_Client(void)
 	MQTT_Sub("test");
 	delay_ns(1); // 1000ms
 	CONNECTED_READY = 1;
-
-}
-
-// 8266 发送命令
-void Esp8266_Send_Command(char *cmd,char ack,int waittime)
-{
 
 }
 

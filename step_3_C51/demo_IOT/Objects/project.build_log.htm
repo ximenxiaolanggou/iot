@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.14.1
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: da da, da, LIC=----
+License Information: da da, da, LIC=JLB1Q-N6HX1-RKXBI-TEJJQ-G99MN-6WGAZ
  
 Tool Versions:
 Toolchain:       PK51 Prof. Developers Kit  Version: 9.54
@@ -19,30 +19,27 @@ CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
 D:\A_ximenxiaolanggou\MyGitHub\iot\step_3_C51\demo_IOT\project.uvproj
-Project File Date:  06/22/2022
+Project File Date:  06/23/2022
 
 <h2>Output:</h2>
 Rebuild target 'Target 1'
 compiling main.c...
-main.c(9): warning C318: can't open file 'timer_0.h'
-main.c(47): warning C206: 'Timer0_Init': missing function-prototype
-main.c(82): warning C260: '=': pointer truncation
 compiling uart.c...
 compiling esp8266.c...
-esp8266\esp8266.c(57): warning C280: 'cmd': unreferenced local variable
-esp8266\esp8266.c(57): warning C280: 'ack': unreferenced local variable
-esp8266\esp8266.c(57): warning C280: 'waittime': unreferenced local variable
 compiling DELAY.c...
-compiling LCD1602.c...
 compiling mqtt.c...
 compiling timer_0.c...
-timer0\timer_0.c(2): warning C318: can't open file 'timer_0.h'
-compiling DS18B20.c...
 compiling OneWire.c...
+compiling DS18B20.c...
+compiling LCD1602.c...
 linking...
-Program Size: data=15.1 xdata=450 code=6765
+*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
+    SPACE:   XDATA   
+    SEGMENT: _PDATA_GROUP_
+    LENGTH:  00BEH
+Program Size: data=9.0 xdata=386 code=3777
 creating hex file from ".\Objects\project"...
-".\Objects\project" - 0 Error(s), 7 Warning(s).
+".\Objects\project" - 0 Error(s), 1 Warning(s).
 </pre>
 </body>
 </html>

@@ -1,11 +1,11 @@
-C51 COMPILER V9.54   DS18B20                                                               06/22/2022 18:22:41 PAGE 1   
+C51 COMPILER V9.54   DS18B20                                                               06/23/2022 18:03:39 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE DS18B20
 OBJECT MODULE PLACED IN .\Objects\DS18B20.obj
-COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE DS18B20\DS18B20.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\esp8
-                    -266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\OneWire;.\DS18B20) DEBUG OBJECTEXTEND PRINT(.\Listings\DS18B20.lst) TABS(3) OBJECT(.
-                    -\Objects\DS18B20.obj)
+COMPILER INVOKED BY: C:\Keil_v5_51\C51\BIN\C51.EXE DS18B20\DS18B20.c COMPACT OPTIMIZE(8,SPEED) BROWSE INCDIR(.\uart;.\es
+                    -p8266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire) DEBUG OBJECTEXTEND PRINT(.\Listings\DS18B20.lst) TABS(3) OBJECT
+                    -(.\Objects\DS18B20.obj)
 
 line level    source
 
@@ -23,7 +23,7 @@ line level    source
   12   1      }
   13          
   14          // 温度读取
-  15          float DS18B20_ReadT(void)
+  15          float DS18B20_ReadT(char *TLTM)
   16          {
   17   1         unsigned char TLSB, TMSB; 
   18   1         int Temp;
@@ -35,15 +35,17 @@ line level    source
   24   1         TMSB = OneWire_ReceiveByte();
   25   1         Temp = (TMSB << 8) | TLSB;
   26   1         T = Temp/16.0;
-  27   1         return T;
-  28   1      }
+  27   1         TLTM[1] = TLSB;
+  28   1         TLTM[0] = TMSB;
+  29   1         return T;
+  30   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     63    ----
+   CODE SIZE        =    118    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----       1
-   PDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----       9
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

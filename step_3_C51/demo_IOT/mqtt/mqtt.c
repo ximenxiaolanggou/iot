@@ -66,8 +66,9 @@ void MQTT_Login(char *client_id, char *username, char *password){
 
 // ÐÄÌø°ü
 void MQTT_Heart(){
-	
-	char heart_package = {0xC0, 0x00};
+
+	USART_SendByte(0xC0);
+	USART_SendByte(0x00);
 
 }
 
