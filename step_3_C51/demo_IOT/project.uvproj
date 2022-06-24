@@ -311,7 +311,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\uart;.\esp8266;.\DELAY;.\LCD;.\mqtt;.\timer0</IncludePath>
+              <IncludePath>.\uart;.\esp8266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -427,6 +427,26 @@
               <FileName>timer_0.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\timer0\timer_0.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>DS18B20</GroupName>
+          <Files>
+            <File>
+              <FileName>DS18B20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DS18B20\DS18B20.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>OneWire</GroupName>
+          <Files>
+            <File>
+              <FileName>OneWire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\OneWire\OneWire.c</FilePath>
             </File>
           </Files>
         </Group>

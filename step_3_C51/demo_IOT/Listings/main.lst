@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  06/23/2022 18:03:38 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  06/24/2022 18:26:05 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   51   2            if(CONNECTED_READY)
   52   2            {
   53   3               P2_0 = 0;
-C51 COMPILER V9.54   MAIN                                                                  06/23/2022 18:03:38 PAGE 2   
+C51 COMPILER V9.54   MAIN                                                                  06/24/2022 18:26:05 PAGE 2   
 
   54   3            }
   55   2         }
@@ -72,25 +72,57 @@ line level    source
   59          
   60          void usart() interrupt 4
   61          {
-  62   1      
-  63   1         if(RI == 1)// 接收中断
-  64   1         {
-  65   2         
-  66   2            RI = 0;
-  67   2         
-  68   2         }
-  69   1      }
+  62   1         static char package[20] = ""; //数据包
+  63   1         static char package_index = 0; // 数据包索引
+  64   1         static char package_data[10] = ""; //数据包
+  65   1         static char topic[10] = ""; //topic
+  66   1         static char topic_package[2] = ""; // topic长度数据包
+  67   1         static char topic_len = 0; // topic长度
+  68   1         static char *p;
+  69   1         static int i;
+  70   1         if(RI == 1) // 接收中断
+  71   1         {
+  72   2            if(SBUF == 0x30){ // MQTT数据报文 - 固定报文
+  73   3               package[20] = "";
+*** WARNING C260 IN LINE 73 OF main.c: '=': pointer truncation
+  74   3               package_index = 0;
+  75   3               package[package_index++] = 0x30;
+  76   3            
+  77   3            }else if(package_index == 1) { // 剩余数据长度
+  78   3               P2_2 = !P2_2;
+  79   3               package[package_index++] = SBUF;
+  80   3               
+  81   3            }else if((package[1] + 1) > package_index){
+  82   3               package[package_index++] = SBUF;
+  83   3               
+  84   3            }else if((package[1] + 1) == package_index){ // 数据包采集完成
+  85   3                  P2_3 = !P2_3;
+  86   3               for(i = 0 ; i < 15 ; i++){
+  87   4               USART_SendByte(package[i]);
+  88   4               }
+  89   3            }
+  90   2            
+  91   2            //
+  92   2            RI = 0;
+  93   2         
+  94   2         }
+  95   1      }
+*** WARNING C280 IN LINE 64 OF main.c: 'package_data': unreferenced local variable
+*** WARNING C280 IN LINE 65 OF main.c: 'topic': unreferenced local variable
+*** WARNING C280 IN LINE 66 OF main.c: 'topic_package': unreferenced local variable
+*** WARNING C280 IN LINE 67 OF main.c: 'topic_len': unreferenced local variable
+*** WARNING C280 IN LINE 68 OF main.c: 'p': unreferenced local variable
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     33    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    237    ----
+   CONSTANT SIZE    =      1    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =      4    ----
+   PDATA SIZE       =     53    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  6 WARNING(S),  0 ERROR(S)
