@@ -66,7 +66,6 @@ void usart() interrupt 4
 	static char topic[10] = ""; //topic
 	static char topic_package[2] = ""; // topic长度数据包
 	static int topic_len = 0; // topic长度
-	static char *p;
 	static char i;
 	if(RI == 1) // 接收中断
 	{
@@ -96,16 +95,11 @@ void usart() interrupt 4
 				package_data[package_data_index++] = package[i];
 			}
 			
-			if(package_data[1] == 0x33){
-				OPER_LED = P2^3;
-			}else if(package_data[1] == 0x34){
-				OPER_LED = P2^4;
-			}
 			
 			if(package_data[0] == 0x31){ // 关灯
-				OPER_LED = 1;
+				P2_2 = 1;
 			}else if(package_data[0] == 0x32){ // 开灯
-				OPER_LED = 0;
+				P2_2 = 0;
 			}
 		}
 		

@@ -5,11 +5,12 @@
 #include "timer_0.h"
 #include "uart.h"
 #include "mqtt.h"
+#include "delay.h"
 #include "DS18B20.h"
 
 
 
-char COLLECT[2];
+char collect[3];
 
 // 初始化
 void Timer0_Init(){
@@ -30,12 +31,13 @@ void timer0() interrupt 1
 	TL0 = 0x66;
 	count++;
 	
-	if(count == 30000) // 30秒一次心跳
+	if(count == 10000) // 10秒一次心跳
 	{
 		count = 0;
 		P2_1 = !P2_1;
 		MQTT_Heart();// 发送心跳
-		DS18B20_ReadT(COLLECT); // 发送温度数据
-		MQTT_Pub("temp",COLLECT);
+		DS18B20_ReadT(collect); // 发送温度数据
+		collect[2] = '\0';
+		MQTT_Pub("temp",collect);
 	}	
 }

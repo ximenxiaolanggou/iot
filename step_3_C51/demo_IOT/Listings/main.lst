@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  06/25/2022 23:01:36 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  06/27/2022 12:08:23 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   51   2            if(CONNECTED_READY)
   52   2            {
   53   3               P2_0 = 0;
-C51 COMPILER V9.54   MAIN                                                                  06/25/2022 23:01:36 PAGE 2   
+C51 COMPILER V9.54   MAIN                                                                  06/27/2022 12:08:23 PAGE 2   
 
   54   3            }
   55   2         }
@@ -79,72 +79,65 @@ line level    source
   66   1         static char topic[10] = ""; //topic
   67   1         static char topic_package[2] = ""; // topic长度数据包
   68   1         static int topic_len = 0; // topic长度
-  69   1         static char *p;
-  70   1         static char i;
-  71   1         if(RI == 1) // 接收中断
-  72   1         {
-  73   2            if(SBUF == 0x30){ // MQTT数据报文 - 固定报文
-  74   3               package[20] = ""; //协议数据包
-*** WARNING C260 IN LINE 74 OF main.c: '=': pointer truncation
-  75   3               package_index = 0; // 协议数据包索引
-  76   3               package_data[10] = ""; //数据包
-*** WARNING C260 IN LINE 76 OF main.c: '=': pointer truncation
-  77   3               package_data_index = 0;//数据包索引
-  78   3               topic[10] = ""; //topic
+  69   1         static char i;
+  70   1         if(RI == 1) // 接收中断
+  71   1         {
+  72   2            if(SBUF == 0x30){ // MQTT数据报文 - 固定报文
+  73   3               package[20] = ""; //协议数据包
+*** WARNING C260 IN LINE 73 OF main.c: '=': pointer truncation
+  74   3               package_index = 0; // 协议数据包索引
+  75   3               package_data[10] = ""; //数据包
+*** WARNING C260 IN LINE 75 OF main.c: '=': pointer truncation
+  76   3               package_data_index = 0;//数据包索引
+  77   3               topic[10] = ""; //topic
+*** WARNING C260 IN LINE 77 OF main.c: '=': pointer truncation
+  78   3               topic_package[2] = ""; // topic长度数据包
 *** WARNING C260 IN LINE 78 OF main.c: '=': pointer truncation
-  79   3               topic_package[2] = ""; // topic长度数据包
-*** WARNING C260 IN LINE 79 OF main.c: '=': pointer truncation
-  80   3               topic_len = 0; // topic长度
-  81   3               package[package_index++] = 0x30;
-  82   3            
-  83   3            }else if(package_index == 1) { // 剩余数据长度
-  84   3               package[package_index++] = SBUF;
-  85   3               
-  86   3            }else if((package[1] + 2) > package_index){
-  87   3               package[package_index++] = SBUF;
-  88   3               
-  89   3            }
-  90   2            
-  91   2            //数据包采集完成
-  92   2            if((package[1] + 2) == package_index){ // 数据包采集完成
-  93   3               // 解析获取数据
-  94   3               topic_len = ((package[2] << 8) | package[3]); // topic长度
-  95   3               for(i = (4 + topic_len) ; i < (package[1] + 2) ; i++){
-  96   4                  package_data[package_data_index++] = package[i];
-  97   4               }
+  79   3               topic_len = 0; // topic长度
+  80   3               package[package_index++] = 0x30;
+  81   3            
+  82   3            }else if(package_index == 1) { // 剩余数据长度
+  83   3               package[package_index++] = SBUF;
+  84   3               
+  85   3            }else if((package[1] + 2) > package_index){
+  86   3               package[package_index++] = SBUF;
+  87   3               
+  88   3            }
+  89   2            
+  90   2            //数据包采集完成
+  91   2            if((package[1] + 2) == package_index){ // 数据包采集完成
+  92   3               // 解析获取数据
+  93   3               topic_len = ((package[2] << 8) | package[3]); // topic长度
+  94   3               for(i = (4 + topic_len) ; i < (package[1] + 2) ; i++){
+  95   4                  package_data[package_data_index++] = package[i];
+  96   4               }
+  97   3               
   98   3               
-  99   3               if(package_data[1] == 0x33){
- 100   4                  OPER_LED = P2^3;
- 101   4               }else if(package_data[1] == 0x34){
- 102   4                  OPER_LED = P2^4;
+  99   3               if(package_data[0] == 0x31){ // 关灯
+ 100   4                  P2_2 = 1;
+ 101   4               }else if(package_data[0] == 0x32){ // 开灯
+ 102   4                  P2_2 = 0;
  103   4               }
- 104   3               
- 105   3               if(package_data[0] == 0x31){ // 关灯
- 106   4                  OPER_LED = 1;
- 107   4               }else if(package_data[0] == 0x32){ // 开灯
- 108   4                  OPER_LED = 0;
- 109   4               }
- 110   3            }
- 111   2            
-C51 COMPILER V9.54   MAIN                                                                  06/25/2022 23:01:36 PAGE 3   
+ 104   3            }
+ 105   2            
+ 106   2            //
+ 107   2            RI = 0;
+ 108   2         
+ 109   2         }
+ 110   1      }
 
- 112   2            //
- 113   2            RI = 0;
- 114   2         
- 115   2         }
- 116   1      }
-*** WARNING C280 IN LINE 69 OF main.c: 'p': unreferenced local variable
+C51 COMPILER V9.54   MAIN                                                                  06/27/2022 12:08:23 PAGE 3   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    353    ----
+   CODE SIZE        =    324    ----
    CONSTANT SIZE    =      1    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =     54    ----
+   PDATA SIZE       =     51    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  5 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)

@@ -11,8 +11,8 @@ char AT_RST[] = "AT+RST\r\n"; // 重启生效
 char AT_CIPMODE[] = "AT+CIPMODE=1\r\n"; // 开启透传模式
 char AT_CIPSEND[] = "AT+CIPSEND\r\n"; // 开始透传发送
 char AT_CIPMUX[] = "AT+CIPMUX=0\r\n"; // 单连接
-//char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
-char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
+char AT_CWJAP[] = "AT+CWJAP=\"prinfo-708\",\"prinfo666\"\r\n";
+//char AT_CWJAP[] = "AT+CWJAP=\"xiaozaizi-4c\",\"qwe369gh147\"\r\n";
 char AT_CIPSTART[] = "AT+CIPSTART=\"TCP\",\"150.158.78.149\",1883\r\n";
 
 
