@@ -8,7 +8,7 @@
 #include "mqtt.h"
 #include "timer_0.h"
 #include "DS18B20.h"
-
+sbit OPER_LED = P2^3;
 int index = 0;
 int clear = 0;
 
@@ -59,32 +59,53 @@ void main()
 
 void usart() interrupt 4
 {
-	static char package[20] = ""; //数据包
-	static char package_index = 0; // 数据包索引
+	static char package[20] = ""; //协议数据包
+	static char package_index = 0; // 协议数据包索引
 	static char package_data[10] = ""; //数据包
+	static char package_data_index = 0;//数据包索引
 	static char topic[10] = ""; //topic
 	static char topic_package[2] = ""; // topic长度数据包
-	static char topic_len = 0; // topic长度
+	static int topic_len = 0; // topic长度
 	static char *p;
-	static int i;
+	static char i;
 	if(RI == 1) // 接收中断
 	{
 		if(SBUF == 0x30){ // MQTT数据报文 - 固定报文
-			package[20] = "";
-			package_index = 0;
+			package[20] = ""; //协议数据包
+			package_index = 0; // 协议数据包索引
+			package_data[10] = ""; //数据包
+			package_data_index = 0;//数据包索引
+			topic[10] = ""; //topic
+			topic_package[2] = ""; // topic长度数据包
+			topic_len = 0; // topic长度
 			package[package_index++] = 0x30;
 		
 		}else if(package_index == 1) { // 剩余数据长度
-			P2_2 = !P2_2;
 			package[package_index++] = SBUF;
 			
-		}else if((package[1] + 1) > package_index){
+		}else if((package[1] + 2) > package_index){
 			package[package_index++] = SBUF;
 			
-		}else if((package[1] + 1) == package_index){ // 数据包采集完成
-				P2_3 = !P2_3;
-			for(i = 0 ; i < 15 ; i++){
-			USART_SendByte(package[i]);
+		}
+		
+		//数据包采集完成
+		if((package[1] + 2) == package_index){ // 数据包采集完成
+			// 解析获取数据
+			topic_len = ((package[2] << 8) | package[3]); // topic长度
+			for(i = (4 + topic_len) ; i < (package[1] + 2) ; i++){
+				package_data[package_data_index++] = package[i];
+			}
+			
+			if(package_data[1] == 0x33){
+				OPER_LED = P2^3;
+			}else if(package_data[1] == 0x34){
+				OPER_LED = P2^4;
+			}
+			
+			if(package_data[0] == 0x31){ // 关灯
+				OPER_LED = 1;
+			}else if(package_data[0] == 0x32){ // 开灯
+				OPER_LED = 0;
 			}
 		}
 		
