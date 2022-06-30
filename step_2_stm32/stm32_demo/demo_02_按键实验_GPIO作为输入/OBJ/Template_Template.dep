@@ -1,5 +1,5 @@
 Dependencies for Project 'Template', Target 'Template': (DO NOT MODIFY !)
-F (.\main.c)(0x62BC1ADB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\LED -I ..\HARDWARE\KEY-ID:\A_ximenxiaolanggou\MyGitHub\iot\step_2_stm32\stm32_demo\demo_02_按键实验_GPIO作为输入\USER\RTE-IC:\soft\mdk5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\soft\mdk5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x62BC1BAC)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\LED -I ..\HARDWARE\KEY-ID:\A_ximenxiaolanggou\MyGitHub\iot\step_2_stm32\stm32_demo\demo_02_按键实验_GPIO作为输入\USER\RTE-IC:\soft\mdk5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\soft\mdk5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (C:\soft\mdk5\ARM\ARMCC\include\stdint.h)(0x574E3E26)

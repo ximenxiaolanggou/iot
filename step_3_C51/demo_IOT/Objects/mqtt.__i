@@ -1,0 +1,1 @@
+"mqtt\mqtt.c" COMPACT OPTIMIZE (8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire) DEBUG OBJECTEXTEND PRINT(.\Listings\mqtt.lst) TABS (3) OBJECT(.\Objects\mqtt.obj)

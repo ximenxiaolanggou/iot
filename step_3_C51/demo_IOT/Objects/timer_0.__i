@@ -1,0 +1,1 @@
+"timer0\timer_0.c" COMPACT OPTIMIZE (8,SPEED) BROWSE INCDIR(.\uart;.\esp8266;.\DELAY;.\LCD;.\mqtt;.\timer0;.\DS18B20;.\OneWire) DEBUG OBJECTEXTEND PRINT(.\Listings\timer_0.lst) TABS (3) OBJECT(.\Objects\timer_0.obj)
