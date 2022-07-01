@@ -2,16 +2,23 @@
 #include "delay.h"
 #include "led.h"
 #include "key.h"
-#include "exti.h"
+#include "iwdog.h"
+#include "usart.h"
 
-char KEY_Press = -1; // 0 代表KEY0按下， 1 代表KEY1 按下， 3 代表WK_UP按下 - 1代表未按下
+static int count = 0;
 
 int main(void)
 {
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+
 	KEY_Init();
 	LED_Init();
 	delay_init();
-	EXTIX_Init();
-	while(1);
+	IWDG_Init(4,625);  // 与分频数为 64,重载值为 625,溢出时间为 1s
+	delay_ms(200);
+	GPIO_ResetBits(GPIOA,GPIO_Pin_8);
+	while(1){
+		if(KEY_Scan(1)==0){// KEY0长按按下喂狗
+			IWDG_Feed();
+		}
+	}
 }

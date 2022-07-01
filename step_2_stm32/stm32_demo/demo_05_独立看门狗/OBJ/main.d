@@ -1,7 +1,7 @@
 ..\obj\main.o: main.c
 ..\obj\main.o: stm32f10x.h
 ..\obj\main.o: ..\CORE\core_cm3.h
-..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\main.o: C:\soft\mdk5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\main.o: system_stm32f10x.h
 ..\obj\main.o: stm32f10x_conf.h
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -32,4 +32,6 @@
 ..\obj\main.o: ..\SYSTEM\sys\sys.h
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\HARDWARE\KEY\key.h
-..\obj\main.o: ..\HARDWARE\EXTI\exti.h
+..\obj\main.o: ..\HARDWARE\IWDOG\iwdog.h
+..\obj\main.o: ..\SYSTEM\usart\usart.h
+..\obj\main.o: C:\soft\mdk5\ARM\ARMCC\Bin\..\include\stdio.h
