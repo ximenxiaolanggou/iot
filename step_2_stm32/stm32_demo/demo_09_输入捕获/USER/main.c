@@ -4,8 +4,8 @@
 #include "timer.h"
 #include "usart.h"
 
-extern u8 TIM3CH1_CAPTURE_STA; // 输入捕获状态
-extern u16 TIM3CH1_CAPTURE_VAL; // 输入捕获值
+extern u8 TIM2CH1_CAPTURE_STA; // 输入捕获状态
+extern u16 TIM2CH1_CAPTURE_VAL; // 输入捕获值
 
 
 int main(void)
@@ -27,11 +27,12 @@ int main(void)
 		if(led0pwmval == 0) dir = 1;
 		TIM_SetCompare1(TIM1,led0pwmval);
 		
-		if(TIM3CH1_CAPTURE_STA & 0x80) {
-			temp = TIM3CH1_CAPTURE_STA & 0x3f;
-			temp = temp*65532 + TIM3CH1_CAPTURE_VAL;
+		if(TIM2CH1_CAPTURE_STA & 0x80) {
+			temp = TIM2CH1_CAPTURE_STA & 0x3f;
+			temp *= 65536;
+			temp += TIM2CH1_CAPTURE_VAL;
 			printf("HIGH:%d\r\n",temp);
-			TIM3CH1_CAPTURE_STA = 0;
+			TIM2CH1_CAPTURE_STA = 0;
 		}
 	}
 

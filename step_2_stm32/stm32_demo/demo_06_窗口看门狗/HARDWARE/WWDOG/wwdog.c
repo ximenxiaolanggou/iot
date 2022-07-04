@@ -25,7 +25,11 @@ void WWDG_Init(u8 tr,u8 wr, u32 fprer){
 	// 设置上窗口值
 	WWDG_SetWindowValue(wr);
 	
+	// 使能看门狗
+	WWDG_Enable(WWDG_CNT);
 	
+	// 清楚提前唤醒中断标志位
+	WWDG_ClearFlag(); 
 	
 	// 开启提前唤醒中断并分组
 	
@@ -36,11 +40,7 @@ void WWDG_Init(u8 tr,u8 wr, u32 fprer){
 	NVIC_Init(&NVIC_InitTypeDefStrue);
 	WWDG_EnableIT();
 	
-// 使能看门狗
-	WWDG_Enable(WWDG_CNT);
-	
-	// 清楚提前唤醒中断标志位
-	WWDG_ClearFlag(); 
+
 	
 	
 }

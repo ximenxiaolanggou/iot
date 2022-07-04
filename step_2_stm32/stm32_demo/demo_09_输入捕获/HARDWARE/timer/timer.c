@@ -145,18 +145,18 @@ void TIMER_2_Cap_Init(u16 arr, u16 psc){
 }
 
 // 中断服务
-u8 TIM3CH1_CAPTURE_STA = 0; // 输入捕获状态
-u16 TIM3CH1_CAPTURE_VAL; // 输入捕获值
+u8 TIM2CH1_CAPTURE_STA = 0; // 输入捕获状态
+u16 TIM2CH1_CAPTURE_VAL; // 输入捕获值
 void TIM2_IRQHandler(){
-	if((TIM3CH1_CAPTURE_STA & 0x80) == 0){ // 还未完成
+	if((TIM2CH1_CAPTURE_STA & 0x80) == 0){ // 还未完成
 	
 		// 更新时间
-		if(TIM_GetITStatus(TIM3,TIM_IT_Update) == SET){
-			if(TIM3CH1_CAPTURE_STA & 0x40) { // 已捕获到上升沿
-				if((TIM3CH1_CAPTURE_STA & 0x3f) == 0x3f){// 按的时间太长
-					TIM3CH1_CAPTURE_STA |= 0x80;
-					TIM3CH1_CAPTURE_VAL = 0xffff;
-				}else TIM3CH1_CAPTURE_STA ++;
+		if(TIM_GetITStatus(TIM2,TIM_IT_Update) == SET){
+			if(TIM2CH1_CAPTURE_STA & 0x40) { // 已捕获到上升沿
+				if((TIM2CH1_CAPTURE_STA & 0x3f) == 0x3f){// 按的时间太长
+					TIM2CH1_CAPTURE_STA |= 0x80;
+					TIM2CH1_CAPTURE_VAL = 0xffff;
+				}else TIM2CH1_CAPTURE_STA ++;
 			
 			}
 		}
@@ -165,19 +165,23 @@ void TIM2_IRQHandler(){
 	
 	// 输入捕获 
 	if(TIM_GetITStatus(TIM2,TIM_IT_CC1) == SET){ 
-		printf("asd");
-		if((TIM3CH1_CAPTURE_STA & 0x40) == 0) { // 上升沿捕获 - WK_UP按下
+		
+		if((TIM2CH1_CAPTURE_STA & 0x40) == 0) { // 上升沿捕获 - WK_UP按下
+			printf("DOWN\r\n");
 			// 清空值
-			TIM3CH1_CAPTURE_STA = 0;
-			TIM3CH1_CAPTURE_VAL = 0;
-			TIM3CH1_CAPTURE_STA |= 0x40;
+			TIM2CH1_CAPTURE_STA = 0;
+			TIM2CH1_CAPTURE_VAL = 0;
+			TIM2CH1_CAPTURE_STA |= 0x40;
 			TIM_SetCounter(TIM2,0);
 			TIM_OC1PolarityConfig(TIM2,TIM_ICPolarity_Falling);
 		}else{ // // 下降沿捕获 - WK_UP松开
-			TIM3CH1_CAPTURE_STA |= 0x80;
-			TIM3CH1_CAPTURE_VAL = TIM_GetCapture1(TIM2);
+			printf("UP\r\n");
+			TIM2CH1_CAPTURE_STA |= 0x80;
+			TIM2CH1_CAPTURE_VAL = TIM_GetCapture1(TIM2);
 			TIM_OC1PolarityConfig(TIM2,TIM_ICPolarity_Rising);
 		}
 	}
+	
+		TIM_ClearITPendingBit(TIM2,TIM_IT_Update | TIM_IT_CC1);
 }
 
