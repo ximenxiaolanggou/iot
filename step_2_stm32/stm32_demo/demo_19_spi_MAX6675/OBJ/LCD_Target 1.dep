@@ -36,7 +36,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
 I (..\HARDWARE\LCD\lcd.h)(0x62CD7C5A)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\HARDWARE\SPI\spi1.h)(0x62CD7C5A)
-I (..\HARDWARE\MAX6675\max6675.h)(0x62CD8661)
+I (..\HARDWARE\MAX6675\max6675.h)(0x62D3EAEB)
 F (.\stm32f10x_it.c)(0x62CD7C5B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\LCD -I ..\HARDWARE\ADC -I ..\HARDWARE\TSENSOR -I ..\HARDWARE\MYDMA -I ..\HARDWARE\DMA_ADC -I ..\HARDWARE\IIC -I ..\HARDWARE\IIC_AT24C02 -I ..\HARDWARE\W25QXX -I ..\HARDWARE\SPI -I ..\HARDWARE\MAX6675-ID:\ximenxiaolanggou\iot\step_2_stm32\stm32_demo\demo_19_spi_MAX6675\USER\RTE-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
 I (stm32f10x_it.h)(0x62CD7C5B)
 I (stm32f10x.h)(0x62CD7C5B)
@@ -430,7 +430,7 @@ I (..\SYSTEM\delay\delay.h)(0x62CD7C5B)
 I (..\SYSTEM\usart\usart.h)(0x62CD7C5B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
 F (..\HARDWARE\MAX6675\max6675.c)(0x62CD863A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\LCD -I ..\HARDWARE\ADC -I ..\HARDWARE\TSENSOR -I ..\HARDWARE\MYDMA -I ..\HARDWARE\DMA_ADC -I ..\HARDWARE\IIC -I ..\HARDWARE\IIC_AT24C02 -I ..\HARDWARE\W25QXX -I ..\HARDWARE\SPI -I ..\HARDWARE\MAX6675-ID:\ximenxiaolanggou\iot\step_2_stm32\stm32_demo\demo_19_spi_MAX6675\USER\RTE-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\max6675.o --omf_browse ..\obj\max6675.crf --depend ..\obj\max6675.d)
-I (..\HARDWARE\MAX6675\max6675.h)(0x62CD8661)
+I (..\HARDWARE\MAX6675\max6675.h)(0x62D3EAEB)
 I (..\SYSTEM\sys\sys.h)(0x62CD7C5B)
 I (..\USER\stm32f10x.h)(0x62CD7C5B)
 I (..\CORE\core_cm3.h)(0x62CD7C5A)

@@ -47,7 +47,7 @@ void My_Uart1_Init(void) {
 }
 
  // ´®¿Ú1ÖÐ¶Ï
-void USART1_IRQHandler(){
+void USART2_IRQHandler(){
 	u8 res;
 	if(USART_GetITStatus(USART1,USART_IT_RXNE)){
 		res = USART_ReceiveData(USART1);
