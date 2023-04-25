@@ -15,7 +15,7 @@
 
 extern u16 SPI_FLASH_TYPE;		//定义我们使用的flash芯片型号		
 
-#define	SPI_MAX6675_CS PAout(2)  //选中FLASH					 
+#define	SPI_MAX6675_CS PAout(4)  //选中FLASH					 
 ////////////////////////////////////////////////////////////////////////////
 
 
