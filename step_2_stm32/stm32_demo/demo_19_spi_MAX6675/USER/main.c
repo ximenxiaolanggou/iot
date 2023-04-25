@@ -24,11 +24,10 @@
   while(1) {
 		SPI_MAX6675_CS = 0; // 拉低
 	    c = MAX6675_ReadByte();
-	  printf("test1:%d\r\n",c);
 		i = c;
 		i = i<<8;
 		c = MAX6675_ReadByte();
-	  printf("test2:%d\r\n",c);
+	
 		SPI_MAX6675_CS = 1; // 拉高
 		
 		i = i|((unsigned int)c);			//i是读出来的原始数据
@@ -52,7 +51,8 @@
 		{
 			printf("max6675没有数据返回，请检查max6675连接。\r\n");
 		}
-		for(i=0;i<0x2fffff;i++);			//max6675的转换时间是0.2秒左右，所以两次转换间隔不要太近
+		//for(i=0;i<0x2fffff;i++);			//max6675的转换时间是0.2秒左右，所以两次转换间隔不要太近
+		delay_ms(150);
   }
 }
 	
