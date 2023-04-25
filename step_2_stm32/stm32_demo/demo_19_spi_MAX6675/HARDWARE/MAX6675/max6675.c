@@ -22,6 +22,7 @@ void MAX6675_Init(){
 unsigned char MAX6675_ReadByte(void)
 {
 	
+	
 	/* Loop while DR register in not emplty */
 	while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_TXE) == RESET);
 	
